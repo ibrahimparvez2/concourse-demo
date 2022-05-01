@@ -1,0 +1,31 @@
+---
+jobs:
+- name: job
+  public: true
+  plan:
+  - task: simple-task
+    config:
+      platform: linux
+      image_resource:
+        type: registry-image
+        source: { repository: busybox }
+      run:
+        path: echo
+        args: ["Hello world!"]
+
+- name: manually trigger me
+  public: true
+  plan:
+  
+  - task: manual trigger here
+    config:
+      platform: linux
+      image_resource:
+        type: registry-image
+        source: { repository: busybox }
+      run:
+        path: sh
+        args:
+        - -exc
+        - |
+          echo "output of your manually triggered task"
