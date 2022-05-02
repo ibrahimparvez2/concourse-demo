@@ -1,31 +1,27 @@
 ---
+resources:
+- name: git-repo
+  type: git
+  source:
+    uri: https://github.com/ibrahimparvez2/concourse-demo.git
+    branch: main
 jobs:
-- name: job
-  public: true
+- name: read-the readme
   plan:
-  - task: simple-task
+  - get: git-repo
+    trigger: true
+  - task: cat-readme
     config:
       platform: linux
       image_resource:
-        type: registry-image
-        source: { repository: busybox }
+        type: docker-image
+        source:
+          repository: concourse/buildroot
+          tag: "git"
+      inputs:
+        - name: git-repo
+      outputs:
+        - name: branch-info
       run:
-        path: echo
-        args: ["Hello world!"]
-
-- name: manually trigger me
-  public: true
-  plan:
-  
-  - task: manual trigger here
-    config:
-      platform: linux
-      image_resource:
-        type: registry-image
-        source: { repository: busybox }
-      run:
-        path: sh
-        args:
-        - -exc
-        - |
-          echo "output of your manually triggered task"
+        path: cat
+        args: ["git-repo/README.md"]
