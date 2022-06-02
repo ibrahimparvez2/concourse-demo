@@ -1,0 +1,14 @@
+resources:
+- name: ci
+  type: git
+  source:
+    uri: https://github.com/concourse/examples.git
+
+jobs:
+- name: say hi and then yo!
+  plan:
+  - get: ci
+  - task: say hi
+    file: ci/tasks/sayhi.yml
+  - task: say yo
+    file: ci/tasks/sayyo.yml
