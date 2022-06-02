@@ -10,6 +10,6 @@ jobs:
   plan:
   - get: ci
   - task: say hi
-    file: ./tasks/sayhi.yml
+    file: ci/tasks/sayhi.yml
   - task: say yo
-    file: ./tasks/sayyo.yml
+    file: ci/tasks/sayyo.yml
