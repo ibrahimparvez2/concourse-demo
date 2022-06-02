@@ -9,4 +9,4 @@ inputs:
   - name: ci
 
 run:
-  path: ci/scripts/sayhi.sh
+  path: ci/scripts/sayyo.sh
