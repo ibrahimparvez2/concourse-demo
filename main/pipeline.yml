@@ -2,7 +2,8 @@ resources:
 - name: ci
   type: git
   source:
-    uri: https://github.com/concourse/examples.git
+    uri: https://github.com/ibrahimparvez2/concourse-demo.git
+    branch: main
 
 jobs:
 - name: say hi and then yo!
